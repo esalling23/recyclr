@@ -1127,12 +1127,11 @@ section.tinderslide {
 
 	h3 {
 		text-align: center;
-		margin: 40px auto;
+		margin: 2em auto;
 
 		@media(max-width: 400px) {
 			margin: 10px auto;
 		}
-
 	}
 
 	.update-info {
@@ -1207,10 +1206,10 @@ section.tinderslide {
 			width: 100%;
 			position: relative;
 			bottom: -40px;
-			margin: 5px 0;
+
 		}
 
-		
+
 
 		.cloudinary-thumbnails {
 			display: none;
@@ -1504,50 +1503,56 @@ section.tinderslide {
 		}
 	}
 
-	.section.profile .edit {
-		margin-top: 20px;
+	.section.profile {
 
-		p {
-			line-height: 1.2;
+		h3 {
+			margin: 1em 0;
 		}
-
-		#btn-save-profile {
-			bottom: -20px;
-		}
-
-		.cloudinary-button {
-			font-size: 12px;
-			padding: 4px;
-		}
-		.image_upload {
-			margin: 4px auto;
-			width: 100px;
-		}
-
-		.profile-picture {
-			height: 100px;
-			width: 100px;
+		.edit {
 			margin-top: 20px;
-		}
 
-		.update-info {
-
-			text-align: left;
-			.row {
-				margin:0px;
-				margin-bottom: 4px;
-			}
-			* {
-				width: 100%;
-				border-radius: 0px;
-			}
 			p {
-				margin: 4px auto;
+				line-height: 1.2;
 			}
 
+			#btn-save-profile {
+				bottom: -20px;
+			}
 
-			.save-msg {
-				bottom: -20px !important;
+			.cloudinary-button {
+				font-size: 12px;
+				padding: 4px;
+			}
+			.image_upload {
+				margin: 4px auto;
+				width: 100px;
+			}
+
+			.profile-picture {
+				height: 100px;
+				width: 100px;
+				margin-top: 20px;
+			}
+
+			.update-info {
+
+				text-align: left;
+				.row {
+					margin:0px;
+					margin-bottom: 4px;
+				}
+				* {
+					width: 100%;
+					border-radius: 0px;
+				}
+				p {
+					margin: 4px auto;
+				}
+
+
+				.save-msg {
+					bottom: -20px !important;
+				}
 			}
 		}
 	}
@@ -1604,6 +1609,7 @@ section.tinderslide {
 
 		#btn-save-profile {
 			bottom: 0px !important;
+			margin: 5px 0;
 		}
 
 		.image_upload {
@@ -1642,8 +1648,21 @@ section.tinderslide {
 	}
 
 }
-// Small Phones
-@media (max-width: 320px) {
+
+@media (max-height: 520px) {
+
+	.section.profile {
+
+		h3 {
+			margin: .5em 0;
+		}
+
+		#btn-save-profile {
+			bottom: -5px !important;
+			margin: 5px 0;
+		}
+
+	}
 
 
 }

@@ -961,7 +961,7 @@ section.tinderslide .item.gone.loss {
 
 .section.profile h3 {
   text-align: center;
-  margin: 40px auto;
+  margin: 2em auto;
 }
 @media (max-width: 400px) {
   .section.profile h3 {
@@ -1023,7 +1023,6 @@ section.tinderslide .item.gone.loss {
   width: 100%;
   position: relative;
   bottom: -40px;
-  margin: 5px 0;
 }
 .section.profile .edit .cloudinary-thumbnails {
   display: none;
@@ -1257,6 +1256,9 @@ section.tinderslide .item.gone.loss {
     line-height: 1;
   }
 
+  .section.profile h3 {
+    margin: 1em 0;
+  }
   .section.profile .edit {
     margin-top: 20px;
   }
@@ -1338,6 +1340,7 @@ section.tinderslide .item.gone.loss {
   }
   .section.profile .edit #btn-save-profile {
     bottom: 0px !important;
+    margin: 5px 0;
   }
   .section.profile .edit .image_upload {
     width: 80px;
@@ -1366,6 +1369,15 @@ section.tinderslide .item.gone.loss {
     margin: 0px 16px;
     line-height: 1;
     font-size: 1.2em;
+  }
+}
+@media (max-height: 520px) {
+  .section.profile h3 {
+    margin: 0.5em 0;
+  }
+  .section.profile #btn-save-profile {
+    bottom: -5px !important;
+    margin: 5px 0;
   }
 }
 @media (max-width: 426px) {
