@@ -4,13 +4,13 @@ const keystone = require('keystone'),
     TemplateLoader = require(appRoot + '/lib/TemplateLoader'),
     _ = require('underscore')
 
-exports.post = function(req, res) {
+exports.login = function(req, res) {
 
 	const Templates = new TemplateLoader()
 
 	const locals = res.locals
 	console.log(req.body, "login body")
-	const query = Player.model.findOne({email:req.body.email}).lean()
+	const query = Player.model.findOne({email:req.body.email})
 	query.exec((err, player) => {
 
 	    if (err || !player) return res.status(422).json({ error_code: "no_profile", msg: "No profile for that email" })
@@ -19,37 +19,29 @@ exports.post = function(req, res) {
 	    data.player = player.id
 
 	    player._.password.compare(req.body.password, (err, result) => {
+				if (result) {
+					if (!player.login) player.login = true
 
-			if (result) {
+					if (player.new) data.new = true
 
-				if (!player.login)
-					player.login = true
+					player.lastLogin = Date.now()
 
-				if (player.new)
-					data.new = true
+					player.save()
 
-				player.lastLogin = Date.now()
+					data.admin = result.admin
 
-				player.save()
+					res.send('/profile/' + data.player)
+				} else {
+					console.log('wrong password')
 
-	            data.admin = result.admin
+					res.status(422).json({
+						error_code: 'wrong_password',
+						msg: 'Sorry, wrong password',
+					})
 
-		  		res.send('/profile/' + data.player)
-
-			} else {
-
-			  	console.log("wrong password")
-
-			  	res.status(422).json({
-			        error_code: "wrong_password",
-			        msg: 'Sorry, wrong password'
-			    })
-
-			    return
-
-			}
-
-	    })
+					return
+				}
+			})
 
 	})
 }

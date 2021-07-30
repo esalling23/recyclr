@@ -14,7 +14,7 @@
 				{{/if}}
 			</div>
 		</div>
-		
+
 		<div class="col-xs-4">
 			<div class="grade {{#ifeq player.completed true}}complete{{/ifeq}}">
 				{{#if player.gradeTwo}}
@@ -29,7 +29,7 @@
 				{{/if}}
 			</div>
 		</div>
-		
+
 		<div class="col-xs-4">
 			<div class="grade {{#ifeq player.completed true}}complete{{/ifeq}}">
 				{{#if player.gradeThree}}
@@ -53,7 +53,7 @@
 			<button class="btn free-play" data-level="*">Play Speed Level</button>
 		</div>
 	</div>
-	
+
 	<form class="edit form row" action="/api/update/{{player._id}}" method="post" enctype="multipart/form-data">
 
 		<h3>Profile: </h3>
@@ -96,15 +96,17 @@
 				</select>
 
 			</div>
-			
+
 			<div class="row">
+				<button class="btn minimal" data-reset="levels">reset data</button>
+
 				<input type='submit' class="btn minimal" id="btn-save-profile" value="save">
 				<div class="save-msg" style="display: none;"></div>
 			</div>
 
 		</div>
 
-		
+
 
 	</form>
 

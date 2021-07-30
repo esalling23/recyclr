@@ -26,14 +26,19 @@ router.get('/profile/:id', routes.views.game);
 
 router.post('/api/create/', keystone.middleware.api, routes.api.game.create);
 
-router.post('/api/login/', keystone.middleware.api, routes.api.login.post);
+router.post('/api/login/', keystone.middleware.api, routes.api.login.login);
 router.get('/api/game/', keystone.middleware.api, routes.api.game.update);
-router.get('/api/game/level', keystone.middleware.api, routes.api.game.level);
+router.get('/api/game/level', keystone.middleware.api, routes.api.game.level)
 router.get('/api/game/match', keystone.middleware.api, routes.api.game.match);
 router.get('/api/game/material', keystone.middleware.api, routes.api.game.material);
 
 router.post('/api/update/:id', keystone.middleware.api, routes.api.profile.update);
 router.post('/api/update/image_upload/:id', keystone.middleware.api, routes.api.profile.image_upload);
+router.post(
+	'/api/profile/:id/reset',
+	keystone.middleware.api,
+	routes.api.profile.resetLevels
+)
 
 // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 // router.get('/protected', middleware.requireUser, routes.views.protected);

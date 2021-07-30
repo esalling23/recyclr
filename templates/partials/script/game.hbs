@@ -317,6 +317,17 @@ $('[data-level]').on('click', function(e) {
 
 });
 
+$('[data-reset]').on('click', event => {
+
+  $.ajax({
+    url: '/api/profile/{{playerId}}/reset',
+    method: 'post',
+    data: {}
+  })
+  .then(res => window.location.reload())
+  .fail(err => alert( "error" + err ))
+})
+
 	function StartLevel(num) {
 
     var data = {

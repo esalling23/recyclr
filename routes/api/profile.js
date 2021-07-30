@@ -82,3 +82,34 @@ exports.image_upload = function(req, res) {
 			})
 
 };
+
+exports.resetLevels = function (req, res) {
+    Player.model.findOne({ _id: req.params.id })
+        .then(player => {
+
+            console.log("Resetting player levels")
+            player.levelOne = false
+            player.pointsOne = 0
+            player.gradeOne = 0
+            player.triesOne = 0
+
+            player.levelTwo = false
+            player.pointsTwo = 0
+            player.gradeTwo = 0
+            player.triesTwo = 0
+
+            player.levelThree = false
+            player.pointsThree = 0
+            player.gradeThree = 0
+            player.triesThree = 0
+
+            player.completed = false
+
+            return player.save()
+        })
+        .then(player => {
+            console.log(player)
+            res.sendStatus(200)
+        })
+        .catch(err => res.status(400).json(err))
+}
