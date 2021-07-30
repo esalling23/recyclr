@@ -280,8 +280,8 @@
           if ($(item))
             item.remove();
 
-          // Check if this is the last card in the stack/player has no more lives - end the level
-          if ($('.item').length <= 1)
+          // Check if that was the last card in the stack/player has no more lives - end the level
+          if ($('.item').length < 1)
             end = true;
 
           if (end === true) {
