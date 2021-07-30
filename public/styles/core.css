@@ -1020,9 +1020,10 @@ section.tinderslide .item.gone.loss {
   width: 150px;
 }
 .section.profile .edit #btn-save-profile {
-  width: 80px;
+  width: 100%;
   position: relative;
   bottom: -40px;
+  margin: 5px 0;
 }
 .section.profile .edit .cloudinary-thumbnails {
   display: none;

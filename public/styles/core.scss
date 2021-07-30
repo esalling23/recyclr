@@ -1204,11 +1204,13 @@ section.tinderslide {
 		}
 
 		#btn-save-profile {
-			width: 80px;
+			width: 100%;
 			position: relative;
 			bottom: -40px;
-
+			margin: 5px 0;
 		}
+
+		
 
 		.cloudinary-thumbnails {
 			display: none;
