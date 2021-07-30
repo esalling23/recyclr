@@ -1,0 +1,40 @@
+{{!< default}}
+{{!--
+/**
+* Engagement Lab Web Suite
+* Developed by Engagement Lab, 2016
+* ==============
+*
+* Index Page sample Template
+* ==========
+*/
+--}}
+
+
+<div class="container-fluid login">
+	<div class="row welcome">
+		<h3>Welcome!</h3>
+		<p>Please login below.</p>
+	</div>
+	<div class="row" id="login" style="display:none">
+		<form id="login-form">
+			<label>Emerson Email</label>
+			<input type="email" id="email_input" tabindex="1"> <br />
+			<label>Emerson ID Number</label>
+			<input type="password" id="password_input" tabindex="2"> <br />
+			<div class="d-flex flex-row">
+				<input class="btn btn-default game_login" type="submit" name="submit" value="play">
+				<input class="btn btn-secondary" name="demo" type="button" value="demo">
+			</div>
+		</form>
+
+		<div class="demo-menu">
+			<input class="btn btn-default" data-demo="student" value="student demo" />
+			<input class="btn btn-default" data-demo="admin" value="admin demo" />
+			<input class="btn btn-secondary" name="back" type="button" value="back">
+		</div>
+
+	    <div class="error" style="display:none">Error!</div>
+	</div>
+	<p id="case-sensitive" style="display:none"><strong>Remember, everything is case-sensitive! <br>Emails should be lower-case, and your ID should have an upper-case 'E'.</strong></p>
+</div> <!-- .container-fluid -->

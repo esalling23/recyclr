@@ -1,0 +1,460 @@
+var clicking = false,
+    readyCount = {{config.countdown}},
+    speed = {{config.speed}},
+    swipeAlertRight,
+    swipeAlertLeft,
+    buttonAlertRecycle,
+    buttonAlertTrash,
+    buttonAlertSpecial,
+    buttonAlertSuper,
+    level;
+
+
+// ADMIN
+
+    if(isAPIAvailable()) {
+      $('#files').bind('change', handleFileSelect);
+    }
+
+    function isAPIAvailable() {
+      // Check for the various File API support.
+      if (window.File && window.FileReader && window.FileList && window.Blob) {
+        // Great success! All the File APIs are supported.
+        return true;
+      } else {
+        // source: File API availability - http://caniuse.com/#feat=fileapi
+        // source: <output> availability - http://html5doctor.com/the-output-element/
+        document.writeln('The HTML5 APIs used in this form are only available in the following browsers:<br />');
+        // 6.0 File API & 13.0 <output>
+        document.writeln(' - Google Chrome: 13.0 or later<br />');
+        // 3.6 File API & 6.0 <output>
+        document.writeln(' - Mozilla Firefox: 6.0 or later<br />');
+        // 10.0 File API & 10.0 <output>
+        document.writeln(' - Internet Explorer: Not supported (partial support expected in 10.0)<br />');
+        // ? File API & 5.1 <output>
+        document.writeln(' - Safari: Not supported<br />');
+        // ? File API & 9.2 <output>
+        document.writeln(' - Opera: Not supported');
+        return false;
+      }
+    }
+
+    function handleFileSelect(evt) {
+      var files = evt.target.files; // FileList object
+      var file = files[0];
+
+      // read the file metadata
+      var output = ''
+          output += '<span style="font-weight:bold;">' + decodeURI(file.name) + '</span><br />\n';
+          output += ' - FileType: ' + (file.type || 'n/a') + '<br />\n';
+          output += ' - FileSize: ' + file.size + ' bytes<br />\n';
+          output += ' - LastModified: ' + (file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() : 'n/a') + '<br />\n';
+
+      // read the file contents
+      printList(file);
+
+      // post the results
+      $('#meta-csv').append(output).show();
+    }
+
+    function printList(file) {
+      var reader = new FileReader();
+      reader.readAsText(file);
+      reader.onload = function(event){
+        var csv = event.target.result;
+        var players = $.csv.toArrays(csv);
+
+        _.each(players, function(player, index){
+          console.log(player)
+          var data = {
+            'name.first': player[0],
+            'name.last': player[1],
+            'email': player[2],
+            'password': player[3]
+          };
+
+          $.post("/api/create/", data, function(data){
+
+            console.log(data);
+
+            if (!data) {
+              // Do some checks
+              return;
+            }
+
+            var lineBreak = index;
+
+            if (data.success) {
+              // Notify success
+              $('#contents').append('<li class="success-' + data.success + '">' + lineBreak + '. ' + data.player.email + '</li>');
+            } else {
+              var playerID;
+              if (!data.player.email) {
+                playerID = JSON.stringify(data.player, null, '\t');
+              } else
+                playerID = data.player.email;
+
+              $('#contents').append("<li class='success-" + data.success + "'>" + lineBreak + ". " + playerID + " - " + data.msg + "</li>");
+            }
+
+            if ($('#contents-scroll-wrap').css('display') == 'none')
+              $('#contents-scroll-wrap').show();
+
+          })
+          .error(function(err) {
+              alert( "error" + err );
+          });
+
+          if (index == players.length - 1) {
+            $('.msg').text('All done! Go check out your new students in Keystone!');
+          } else {
+            $('.msg').text('Working!! Do not reload!');
+          }
+
+        });
+
+      };
+      reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
+    }
+
+
+ // Rules Popups
+
+  sessionStorage.setItem('new', "{{player.new}}");
+
+if (sessionStorage.getItem('new') == "true") {
+  $('.alert').fadeIn(function(){
+    $('.msg').html('<strong>Read the rules below:</strong>').show();
+    $('#alert-continue').text('Next');
+    $('.image').fadeIn();
+    $('#alert-continue').show(function(){
+      $('#alert-continue').on('click', function(){
+        if ($('.image:visible').length > 1) {
+          $('.image:visible').last().fadeOut();
+
+          if ($('.image:visible').length == 2)
+            $('#alert-continue').text('Go to Recyclr');
+
+        } else {
+          $('.alert').fadeOut();
+          $('.image:visible').last().fadeOut();
+        }
+      });
+    });
+  });
+}
+
+  // NAVIGATION
+
+  $('[data-section]').on('click', function(){
+
+      var animOpts = {};
+
+      var section = $(this).data('section');
+      var direction = $(this).data('direction');
+
+      $('.section.ACTIVE').css({'left': 'auto', 'right': 'auto'});
+
+      animOpts[direction] = '-=4000px';
+
+      $('[data-section]').css('visibility', 'hidden');
+
+      $('.section.ACTIVE').animate( animOpts, 500, function(){
+
+        $(this).toggleClass('ACTIVE');
+        $('[data-section]').css('visibility', 'visible');
+
+        $('.section.' + section)
+        .css({
+        	'left': 'auto',
+        	'right': 'auto'
+        })
+        .fadeIn(function(){
+            $(this).toggleClass('ACTIVE');
+        });
+      });
+
+  });
+
+  $('[data-subsection]').on('click', function(){
+
+      var section = $(this).data('subsection');
+      $('[data-subsection].active').toggleClass('active');
+      $(this).toggleClass('active');
+
+      var height = $(window).height();
+
+      if (height <= 480) {
+        height = '150px';
+      } else {
+        height = '200px'
+      }
+
+      var animOpts = {};
+      animOpts['height'] = '0px';
+      animOpts['padding'] = '0px';
+
+      $('.subsection.ACTIVE').animate( animOpts, 200, function(){
+
+          $(this).toggleClass('ACTIVE').hide();
+
+          $('.subsection.' + section).css({'height': '0px', 'width': 'calc(100% - 40px)'});
+
+          $('.subsection.' + section)
+          .show(function(){
+            $(this).toggleClass('ACTIVE')
+            .animate({
+              'height': height
+            });
+          });
+
+      });
+
+  });
+
+  $('input#back-btn').click(function() {
+      console.log("returngin")
+      $('.modal-wrap.match.open').fadeOut().removeClass('open');
+      $('.modal-group').hide();
+  });
+
+// PROFILE
+
+// Trigger Select2
+$("#team").select2();
+
+$('#btn-save-profile').on('click', function(e) {
+	e.preventDefault();
+	e.bubbles = false;
+	e.stopImmediatePropagation();
+	e.stopPropagation();
+
+	if (clicking == true)
+		return;
+
+		clicking = true;
+
+    if ($('.edit .team-select:selected').length > 0 || $('.edit #username').val() ) {
+      console.log('changing username/team')
+      var data = {
+        team: $('.edit .team-select:selected').attr('id'),
+        username: $('.edit #username').val()
+      };
+
+      console.log(data);
+
+      $.post("/api/update/{{playerId}}", data, function(data){
+
+        // Notify success
+        $('.update-info .save-msg').text('Nice! Saved.').fadeIn(function(){
+        	setTimeout(function(){
+            $('.update-info .save-msg').fadeOut();
+        	}, 2000);
+        });
+
+        if (!data)
+          return;
+
+        if (data.username) {
+          $('.edit #username').val(data.username);
+          $('.edit #username-text').text(data.username);
+        }
+
+        if (data.team)
+          $('.edit .team-select#' + data.team.key).prop('selected', true);
+
+        clicking = false;
+      })
+      .error(function(err) {
+          alert( "error" + err );
+      });
+
+    }
+  });
+
+  $('#upload_widget_opener').cloudinary_upload_widget(
+    { cloud_name: 'esalling',
+      upload_preset: 'wtokgjnv',
+      cropping: 'server',
+      sources: [ 'local', 'url' ],
+      multiple: false,
+      tags: '{{playerId}}'
+    }, function(error, result) {
+
+      if (!result[0])
+        return;
+
+      console.log(result[0]);
+
+      // Do some stuff with the display
+    $.post("/api/update/image_upload/{{playerId}}", { image: result[0] }, function(data){
+
+      // Notify success
+      $('.update-picture .save-msg').text('Nice! Saved.').fadeIn(function(){
+        setTimeout(function(){
+          $('.update-picture .save-msg').fadeOut();
+        }, 2000)
+      });
+
+      // Do some stuff with the display
+      $('.profile-picture').attr('src', result[0].url);
+    }).error(function(err) {
+        alert( "error" + err );
+    });
+
+});
+
+// Levels
+
+$('[data-level]').on('click', function(e) {
+
+    if (playing == false)
+      StartLevel($(this).data('level'));
+
+    e.stopPropagation();
+    e.bubbles = false;
+    e.preventDefault();
+
+});
+
+	function StartLevel(num) {
+
+    var data = {
+      level: num,
+      player: '{{playerId}}'
+    };
+
+    $.get("/api/game/level", data, function(data){
+
+      // Notify success
+      $(".game-level").html(data.html);
+      if ($(window).height() <= 500)
+        slideheight = $(window).height() - 235;
+      else
+        slideheight = $(window).height() - 250;
+
+      $('.item:not(.open)').height(slideheight);
+
+        $('.game-level').fadeIn(function(){
+
+          {{!-- Special option modal --}}
+          if (data.specialHtml)
+            $('.modal.special').html(data.specialHtml);
+
+          {{!-- Timer --}}
+          if (data.timerHtml)
+            $('.timer-wrap').html(data.timerHtml).show();
+
+          {{!-- Get Ready Modal --}}
+          if (data.readyHtml)
+            $('#ready-timer').html(data.readyHtml);
+
+          {{!-- Lives Count --}}
+          if (data.livesHtml)
+            $('.lives-wrap').html(data.livesHtml).show();
+
+          window.playerId = '{{playerId}}';
+
+          window.level = num;
+
+          $.getScript( '/js/level.js' );
+
+          // enable/disable buttons
+          if (num == 2) {
+            $('#compost').attr('disabled', false);
+            $('#compost').show();
+            $('#special').hide();
+          } else if (num == 3) {
+            $('#compost').attr('disabled', false);
+            $('#special').attr('disabled', false);
+            $('#special').show();
+          } else if (num == 1) {
+            $('#compost').attr('disabled', true);
+            $('#special').attr('disabled', true);
+            $('#special').hide();
+            $('#compost').hide();
+          } else if (num == '*') {
+            $('#compost').attr('disabled', false);
+            $('#special').attr('disabled', false);
+            $('#special').show();
+            $('#compost').show();
+          }
+
+          // Swipe and Button Alerts
+
+          if (num == 1 && ($(".level[data-level='1']").data('tries') === 0 || !$(".level[data-level='1']").data('tries'))) {
+            swipeAlertRight = true;
+            swipeAlertLeft = true;
+            buttonAlertRecycle = true;
+            buttonAlertTrash = true;
+          }
+
+          if (num == 2 && ($(".level[data-level='2']").data('tries') === 0  || !$(".level[data-level='2']").data('tries'))) {
+            buttonAlertSuper = true;
+          }
+
+          if (num == 3 && ($(".level[data-level='3']").data('tries') === 0 || !$(".level[data-level='3']").data('tries'))) {
+            buttonAlertSpecial = true;
+          }
+
+
+           if ({{player.new}}) {
+            $('.alert .msg').html('<h3>Welcome to Recyclr</h3><p>Remember, you can keep track of your matches as you play using the counter at the top of your screen.</p>').show();
+            $('.alert .img-points, .alert #alert-continue').show();
+            $('.alert .alert-inner').addClass('new-player');
+            $('.alert').fadeIn();
+          }
+
+          // Bind close alert button
+          $('#alert-abort, #alert-continue').off('click').on('click', function(e){
+             e.stopPropagation();
+            $('.alert').fadeOut(function(){
+              $(this).find('.msg').html('').hide();
+              $(this).find('button, img').hide();
+            });
+          });
+
+          // Fade in the game, out the profile
+          $('.ACTIVE').removeClass('ACTIVE').fadeOut(function(){
+            $('#points-counter #points-text').html('0');
+            $('.game').addClass('ACTIVE').fadeIn();
+            playing = true;
+
+            $('.buttons').show();
+            $('.level.header').show();
+          });
+
+          if (num != 1 && num != '*') {
+            $('.alert .full').show(function(){
+              if (num == 2 && data.player.triesTwo == 0){
+                $('.alert .msg').text('Welcome to level two. In this level you can compost items using the blue super like button on the right.').show();
+                $('.alert .img-lvl-two').show();
+                $('.alert').fadeIn();
+              } else if (num == 3 && data.player.triesThree == 0) {
+                $('.alert .msg').text('Welcome to level three. In this level you can choose from a menu of special options using the black special button on the left.').show();
+                $('.alert .img-lvl-three').show();
+                $('.alert').fadeIn();
+              }
+
+            });
+          }
+        });
+    });
+	}
+
+
+  $('#btn-end-level').off('click').on('click', function() {
+
+    window.location.reload();
+    Reload();
+
+  });
+
+  $('#btn-reload-level').off('click').on('click', function() {
+
+    console.log($('.game-level .level').data('level'))
+
+    StartLevel($('.game-level .level').data('level'));
+
+  });
+

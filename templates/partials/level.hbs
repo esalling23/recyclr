@@ -1,0 +1,56 @@
+{{!-- {{{jsonPrint level}}} --}}
+{{#ifeq level 'One'}}
+	<section class="row level tinderslide" data-level="1" {{#if player.triesOne}}data-tries="{{player.triesOne}}{{/if}}">
+
+		<ul style="height:100%;">
+			{{!-- {{{jsonPrint (shuffle items)}}} --}}
+			{{#each (shuffle items)}}
+				{{> item this}}
+			{{/each}}
+		</ul>
+
+	</section>
+
+{{/ifeq}}
+
+{{#ifeq level 'Two'}}
+
+	<section class="row level tinderslide" data-level="2" {{#if player.triesTwo}}data-tries="{{player.triesTwo}}"{{/if}}>
+
+		<ul style="height:100%;">
+			{{#each (shuffle items)}}
+				{{> item this}}
+			{{/each}}
+		</ul>
+
+	</section>
+
+{{/ifeq}}
+
+{{#ifeq level 'Three'}}
+
+	<section class="row level tinderslide" data-level="3" {{#if player.triesThree}}data-tries="{{player.triesThree}}"{{/if}}>
+
+		<ul style="height:100%;">
+			{{#each (shuffle items)}}
+				{{> item this}}
+			{{/each}}
+		</ul>
+
+	</section>
+
+{{/ifeq}}
+
+{{#ifeq level 'Free'}}
+
+	<section class="row level tinderslide" data-level="*">
+
+		<ul style="height:100%;">
+			{{#each (shuffle items)}}
+				{{> item this}}
+			{{/each}}
+		</ul>
+
+	</section>
+
+{{/ifeq}}

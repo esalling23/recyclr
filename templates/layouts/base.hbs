@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title>Recycle Me</title>
+		<meta name="description" content="Recycle Me">
+		<meta name="author" content="Erica Salling">
+		<!-- Mobile Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{{!-- <meta name="theme-color" content="#78cbd1"> --}}
+
+		{{!-- Open Graph --}}
+		{{!-- <meta property="og:image" content="http://res.cloudinary.com/engagement-lab-home/image/upload/v1455896685/site/about/logo_color.png" /> --}}
+
+		{{!-- Load our CSS/docs --}}
+		{{> css environment=env}}
+
+		{{!-- This file provides the default styling for the KeystoneJS Content Editor
+		- only renders when user is logged in and admin--}}
+		{{!-- {{{isAdminEditorCSS user}}} --}}
+
+	</head>
+
+	<body class="body">
+
+		{{!-- {{> nav}} --}}
+
+		{{!-- modals --}}
+
+		<!-- page wrapper start -->
+		<!-- ================ -->
+		<div class="page-wrapper" id="wrapper">
+
+
+		<div class="modal end"></div>
+
+		<div class="modal alert">{{>alert}}</div>
+
+		<div class="modal match"></div>
+		<div class="modal material-profile"></div>
+		<div class="modal special"></div>
+
+		<div id="ready-timer" class="modal"></div>
+
+		<div class="app-header">
+			<h2>Recyclr</h2>
+		</div>
+
+			<!-- BODY CONTENT START -->
+			{{{body}}}
+
+
+		<div class="buttons" style="display:none">
+			<input id="special" disabled="false" class="small submit btn-handler" type="submit" name="submit" value="">
+			<input id="trash" data-keep_enabled="true" data-event="item:trash" class="large submit btn-handler" type="submit" name="submit" value="">
+			<input id="recycle" data-keep_enabled="true" data-event="item:recycle" class="large submit btn-handler" type="submit" name="submit" value="">
+			<input id="compost" disabled="false" data-keep_enabled="true" data-event="item:compost" class="small submit btn-handler" type="submit" name="submit" value="">
+		</div>
+
+			{{!-- {{> footer}} --}}
+
+			<!-- page-wrapper end -->
+			{{!-- {{#ifeq env "development"}} --}}
+				{{> script/development}}
+			{{!-- {{else}}
+				{{> script/production section=section}}
+			{{/ifeq}} --}}
+
+
+
+			{{{isAdminEditorJS user}}}
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<h2>Leaderboard</h2>
+<p>The top 100 scores will appear for both individuals and teams</p>
+<div class="leader-nav">
+	<button class="btn active" data-subsection="individuals">Individual</button>
+	<button class="btn" data-subsection="teams">Teams</button>
+</div>
+
+<div id="individual-leader" class="subsection board individuals ACTIVE">
+	<ul>
+		{{#each individuals}}
+		<li>{{listbump @index}}. <div class="points">{{leader}}</div> {{#if username}}{{username}}{{else}}{{{name.first}}}{{/if}} - <span class="team">{{team.name}}</span></li>
+		{{/each}}
+	</ul>
+
+</div>
+
+<div id="team-leader" class="subsection teams board">
+	{{#if player.team}}
+	Let's see how your team, <strong>{{player.team.name}}</strong>, is doing!
+	{{else}}
+
+	Looks like you don't have a team - you should pick one in your profile settings! 
+
+	{{/if}}
+
+	<ul>
+		{{#each leaderTeams}}
+		<li>{{listbump @index}}. <div class="points">{{this.score}}</div> {{this.team}}</li>
+		{{/each}}
+	</ul>
+
+</div>
