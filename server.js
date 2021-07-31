@@ -19,6 +19,7 @@ const storage = multer.memoryStorage()
 // require database configuration logic
 // `db` will be the actual Mongo URI as a string
 const db = require('./config/db')
+console.log(db)
 
 // define server and client ports
 // used for cors and local port declaration
