@@ -306,10 +306,13 @@ $('#btn-save-profile').on('click', function(e) {
 
 // Levels
 
-$('[data-level]').on('click', function(e) {
+$('body').on('click', '[data-level]', function(e) {
 
-    if (playing == false)
-      StartLevel($(this).data('level'));
+    {{!-- if (playing == false) --}}
+    const level = $(this).data('level')
+      StartLevel(level === '*' ? '*' : +level);
+
+    $('.end').hide()
 
     e.stopPropagation();
     e.bubbles = false;
@@ -335,18 +338,21 @@ $('[data-reset]').on('click', event => {
       player: '{{playerId}}'
     };
 
-    $.get("/api/game/level", data, function(data){
+    $.ajax({
+      url: "/api/game/level",
+      data
+    })
+      .then(data => {
 
       // Notify success
       $(".game-level").html(data.html);
-      if ($(window).height() <= 500)
-        slideheight = $(window).height() - 235;
-      else
-        slideheight = $(window).height() - 250;
 
-      $('.item:not(.open)').height(slideheight);
+      if ($(window).height() <= 500) { slideheight=$(window).height() - 235 } else { slideheight=$(window).height() - 250 }
+        $('.item:not(.open)').height(slideheight);
 
-        $('.game-level').fadeIn(function(){
+      setTimeout(function ()
+      {
+        $('.game-level').fadeIn(function() {
 
           {{!-- Special option modal --}}
           if (data.specialHtml)
@@ -400,6 +406,7 @@ $('[data-reset]').on('click', event => {
             buttonAlertTrash = true;
           }
 
+
           if (num == 2 && ($(".level[data-level='2']").data('tries') === 0  || !$(".level[data-level='2']").data('tries'))) {
             buttonAlertSuper = true;
           }
@@ -450,6 +457,7 @@ $('[data-reset]').on('click', event => {
             });
           }
         });
+      }, 500)
     });
 	}
 
@@ -457,6 +465,7 @@ $('[data-reset]').on('click', event => {
   $('#btn-end-level').off('click').on('click', function() {
 
     window.location.reload();
+    playing = false;
     Reload();
 
   });

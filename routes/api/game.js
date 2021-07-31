@@ -224,7 +224,7 @@ exports.update = function(req, res) {
                 data.total = total;
                 data.grade = grade;
                 data.passed = passed;
-                data.next = level + 1;
+                data.next = +level + 1;
 
                 Templates.Load('partials/end', data, (html) => {
 
