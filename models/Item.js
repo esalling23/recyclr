@@ -4,7 +4,7 @@
  * Item page Model
  * @module Item
  * @class Item
- * @author Johnny Richardson
+ * @author Eron Salling
  *
  * For field docs: http://keystonejs.com/docs/database/
  *

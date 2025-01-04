@@ -4,7 +4,7 @@
  * SpecialOption page Model
  * @module SpecialOption
  * @class SpecialOption
- * @author Johnny Richardson
+ * @author Eron Salling
  * 
  * For field docs: http://keystonejs.com/docs/database/
  *

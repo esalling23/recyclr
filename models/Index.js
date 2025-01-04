@@ -4,7 +4,7 @@
  * Index page Model
  * @module index
  * @class index
- * @author Johnny Richardson
+ * @author Eron Salling
  * 
  * For field docs: http://keystonejs.com/docs/database/
  *

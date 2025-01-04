@@ -4,7 +4,7 @@
  * Material page Model
  * @module Material
  * @class Material
- * @author Johnny Richardson
+ * @author Eron Salling
  * 
  * For field docs: http://keystonejs.com/docs/database/
  *
@@ -44,7 +44,7 @@ Material.relationship({ ref: 'Item', refPath: 'material' });
 Material.schema.post('remove', function(next) {
 
 	var id = this._id;
-    // Remove all the assignment docs that reference the removed person.
+    // Remove all the Item docs that reference the removed Material.
     Item.model.find({ material: id }, function(err, result){
     	console.log(result);
     	result.material = _.without(result.material, id);

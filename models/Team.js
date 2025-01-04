@@ -4,7 +4,7 @@
  * Team page Model
  * @module Team
  * @class Team
- * @author Johnny Richardson
+ * @author Eron Salling
  * 
  * For field docs: http://keystonejs.com/docs/database/
  *

@@ -4,7 +4,7 @@
  * CSV page Model
  * @module CSV
  * @class CSV
- * @author Johnny Richardson
+ * @author Eron Salling
  * 
  * For field docs: http://keystonejs.com/docs/database/
  *

@@ -4,7 +4,7 @@
  * Game page Model
  * @module Game
  * @class Game
- * @author Johnny Richardson
+ * @author Eron Salling
  *
  * For field docs: http://keystonejs.com/docs/database/
  *
