@@ -30,8 +30,7 @@
     "hbs": "^4.1.2",
     "keystone": "^4.2.1",
     "merge": "^2.1.1",
-    "mongodb": "^4.0.1",
-    "mongoose": "^5.13.3",
+    "mongoose": "4.13.14",
     "pluralize": "^8.0.0",
     "progressbar.js": "^1.1.0",
     "random-number": "^0.0.9",
@@ -39,6 +38,6 @@
   },
   "devDependencies": {
     "eslint": "^7.31.0",
-    "eslint-config-standard": "^16.0.3"
+    "eslint-config-standard": "^17.1.0"
   }
 }
