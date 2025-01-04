@@ -22,7 +22,7 @@ var Player = keystone.List('Player');
  */
 var CSV = new keystone.List('CSV', 
 	{
-		label: 'CSV files',
+		label: 'Player CSV Uploads',
 		singular: 'CSV file',
 		autokey: { path: 'key', from: 'name', unique: true },
 	});
