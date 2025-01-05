@@ -153,7 +153,7 @@ button.nav-bar[data-section=profile] {
   width: 25px;
 }
 button.nav-bar[data-section=levels] {
-  background-image: url("/images/play-icon.svg");
+  background-image: url("/images/playsvg.svg");
   background-size: contain;
   background-repeat: no-repeat;
   height: 25px;
@@ -186,12 +186,12 @@ button:not(:disabled):focus, button:not(:disabled):active, .btn:not(:disabled):f
 }
 button:not(:disabled).minimal:hover, button:not(:disabled).minimal:focus, .btn:not(:disabled).minimal:hover, .btn:not(:disabled).minimal:focus, input:not(:disabled).minimal:hover, input:not(:disabled).minimal:focus {
   background-color: white;
-  color: #0a512f;
-  border: 2px solid #0a512f;
+  color: rgb(10.4426229508, 80.5573770492, 46.618852459);
+  border: 2px solid rgb(10.4426229508, 80.5573770492, 46.618852459);
 }
 button:disabled, .btn:disabled, input:disabled {
-  color: #6eecaf;
-  border: 2px solid #6eecaf;
+  color: rgb(109.8196721311, 236.1803278689, 175.0163934426);
+  border: 2px solid rgb(109.8196721311, 236.1803278689, 175.0163934426);
 }
 
 .maximal {
@@ -384,7 +384,7 @@ button:disabled, .btn:disabled, input:disabled {
   padding: 0px;
 }
 .special .option-wrap .option {
-  background-color: #4d4d4d;
+  background-color: rgb(76.5, 76.5, 76.5);
   height: 180px;
   width: 140px;
   display: inline-block;
@@ -462,7 +462,7 @@ button:disabled, .btn:disabled, input:disabled {
   bottom: 20px;
 }
 #rules-glide .glide__bullet {
-  background-color: #818181;
+  background-color: rgb(128.5, 128.5, 128.5);
 }
 #rules-glide .glide__bullet.active {
   background-color: #343434;
@@ -913,10 +913,16 @@ section.tinderslide .item.gone.loss {
   text-align: center;
 }
 .buttons input {
+  margin: 1rem 0;
   bottom: -15px;
   background-color: white;
   border-radius: 50%;
   border: 2px solid #343434;
+  transition: scale 0.2s;
+}
+.buttons input:hover, .buttons input:focus {
+  filter: saturate(1.6);
+  scale: 1.05;
 }
 .buttons input:before {
   content: "";
@@ -1007,7 +1013,7 @@ section.tinderslide .item.gone.loss {
 .section.profile .edit {
   margin-top: 40px;
   padding-bottom: 80px;
-  border-top: 2px solid #818181;
+  border-top: 2px solid rgb(128.5, 128.5, 128.5);
 }
 .section.profile .edit #team {
   border: 1px solid #343434;
@@ -1046,8 +1052,8 @@ section.tinderslide .item.gone.loss {
   box-shadow: none !important;
   outline: 0px !important;
   background-color: white;
-  color: #0a512f;
-  border: 2px solid #0a512f;
+  color: rgb(10.4426229508, 80.5573770492, 46.618852459);
+  border: 2px solid rgb(10.4426229508, 80.5573770492, 46.618852459);
 }
 .section.profile .edit .image_upload {
   margin: 10px;
@@ -1240,22 +1246,18 @@ section.tinderslide .item.gone.loss {
   h1, h2, h3, h4 {
     margin: 4px;
   }
-
   h2 {
     font-size: 28px;
   }
-
   h3 {
     font-size: 22px;
   }
-
   .row.special-options {
     height: 300px;
   }
   .row.special-options .profile-text p {
     line-height: 1;
   }
-
   .section.profile h3 {
     margin: 1em 0;
   }
@@ -1298,7 +1300,6 @@ section.tinderslide .item.gone.loss {
   .section.profile .edit .update-info .save-msg {
     bottom: -20px !important;
   }
-
   .match h3 {
     margin-top: 16px;
   }
@@ -1312,22 +1313,18 @@ section.tinderslide .item.gone.loss {
   .level-group .minimal {
     margin: 6px auto;
   }
-
   .section.leaderboard .board {
     height: 150px;
   }
-
   .section, .subsection {
     margin-top: 8px;
   }
   .section button.nav-bar, .subsection button.nav-bar {
     top: -42px;
   }
-
   .end.match .match-list {
     height: calc(100% - 240px);
   }
-
   .section.profile .edit {
     margin-top: 10px;
   }
@@ -1357,7 +1354,6 @@ section.tinderslide .item.gone.loss {
   .section.profile .edit h3 {
     margin: 4px auto;
   }
-
   .match h3 {
     margin-top: 16px;
     font-size: 3em;
@@ -1385,7 +1381,6 @@ section.tinderslide .item.gone.loss {
     width: 40%;
     left: 30%;
   }
-
   .timer-wrap {
     margin-left: 0px;
     background-size: 60px;
