@@ -1,0 +1,21 @@
+{
+  "name": "recyclr",
+  "description": "Tinder for Recycling",
+  "main": "server.js",
+  "authors": [
+    "Eron Salling"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/esalling23/recyclr",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "glidejs": "^3.7.1"
+  }
+}

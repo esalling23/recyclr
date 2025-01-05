@@ -1,27 +1,105 @@
-#[![glide.js](http://glide.jedrzejchalubek.com/images/glide-logotype.png)](http://glide.jedrzejchalubek.com)
+[![glide.js](https://glidejs.com/images/glidejs-logotype-dark.png)](https://glidejs.com)
 
-[Glide.js](http://glide.jedrzejchalubek.com) is a responsive and touch-friendly jQuery slider. Based on CSS3 transitions. It's simple, lightweight and fast. It’s designed to slide. No less, no more.
+### [Glide.js](https://glidejs.com) is a dependency-free JavaScript ES6 slider and carousel. It’s lightweight, flexible and fast. Designed to slide. No less, no more
 
-[![Build Status](https://api.travis-ci.org/jedrzejchalubek/glidejs.svg?branch=master)](https://travis-ci.org/jedrzejchalubek/glidejs)
+[![Build Status](https://api.travis-ci.org/glidejs/glide.svg?branch=master)](https://travis-ci.org/glidejs/glide)
 
-##Announcement
-Plugin in version releases `2.*.*` and `1.*.*` are NOT compatible. Big changes are made, so read documentation before upgrade.
+What can convince you:
+- **Dependency-free**. Everything included, ready for action.
+- Lightweight. Only **~23kb (~7kb gzipped)** with every functionality on board.
+- **Modular**. Remove unused modules and drop script weight even more.
+- **Extendable**. Plug-in your own modules with additional functionalities.
+- **Bundlers ready**. Using Rollup or Webpack? We have your back.
 
-##Documentation
-Available at: http://glide.jedrzejchalubek.com/docs.html
+## Documentation
 
-##Contributing
-The issue channel is especially for improvement proposals and bug reporting. If you have implementing problems, please write on StackOverflow with [glidejs](http://stackoverflow.com/questions/tagged/glidejs) tag.
+Visit [glidejs.com](https://glidejs.com/docs) for documentation.
 
-##Showcase
-Have you created something amazing with Glide.js? Send a link so I can put it in here :)
+> Looking for old documentation? [Wiki](https://github.com/glidejs/glide/wiki) contains archived documentation of Glide.js in version `^2.0.0`.
 
-##Building
-Build using Grunt and Bower. The following tasks are available:
-- `default` Compiles script and styles into `/dist` folder
-- `style` Compiles styles into `/dist` folder
-- `script` Compiles script into `/dist` folder
-- `test` Running tests
+## Donation
 
-##License
-Glide is Copyright © [Jędrzej Chałubek](http://jedrzejchalubek.com) and is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+Glide.js is an open source project licensed under the MIT license. It's completely free to use. However, it would be great if you buy me a cup of coffee once in a while to keep me awake :)
+
+- [PayPal](https://www.paypal.me/jedrzejchalubek)
+- [Github Sponsors](https://github.com/sponsors/jedrzejchalubek)
+
+## Getting started
+
+Pull-in a latest version with NPM ...
+
+```bash
+npm install @glidejs/glide
+```
+
+... provide `<link>` to the required core stylesheet. You can also optionally add an included theme stylesheet ...
+
+```html
+<!-- Required Core stylesheet -->
+<link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+
+<!-- Optional Theme stylesheet -->
+<link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
+```
+
+... then, prepare a little bit of necessary markup ...
+
+```html
+<div class="glide">
+  <div data-glide-el="track" class="glide__track">
+    <ul class="glide__slides">
+      <li class="glide__slide"></li>
+      <li class="glide__slide"></li>
+      <li class="glide__slide"></li>
+    </ul>
+  </div>
+</div>
+```
+
+... and finally, initialize and mount a Glide.
+
+```js
+import Glide from '@glidejs/glide'
+
+new Glide('.glide').mount()
+```
+
+Need a few selected modules? Import and mount only what you need.
+
+```js
+import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
+
+new Glide('.glide').mount({ Controls, Breakpoints })
+```
+
+## Contributing
+
+The issue channel is especially for improvement proposals and bug reporting. If you have implementing problems, please write on StackOverflow with [glidejs](https://stackoverflow.com/questions/tagged/glidejs) tag.
+
+## Browser Support
+
+ - IE 11+
+ - Edge
+ - Chrome 10+
+ - Firefox 10+
+ - Opera 15+
+ - Safari 5.1+
+ - Safari iOS 9+
+
+## Building
+
+Build using NPM scripts. The following scripts are available:
+- `build:css` - Outputs CSS files from SASS files.
+- `build:js` - Outputs all destination variants of the script.
+- `build` - Comprehensively builds the entire library.
+- `test` - Runs complete test suite.
+- `lint` - Lints library JavaScript files.
+
+## Credits
+
+- [Jędrzej Chałubek](https://github.com/jedrzejchalubek) - Creator
+- [Contributors](../../contributors)
+
+## License
+
+Copyright (c) 2014-present, [Jędrzej Chałubek](https://jedrzejchalubek.com). Licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
