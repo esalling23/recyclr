@@ -45,18 +45,21 @@ Item.add({
 	},
 	status: { type: Types.Select, label: 'What should be done with this item?', options: 'Recycle, Trash, Compost, Special', required: true, initial: true},
 	statusOr: { type: Types.Select, label: 'OR : What should be done with this item?', options: 'Recycle, Trash, Compost, Special'},
-	specialStatus: {
-		type: Types.Relationship,
-		ref: 'SpecialOption',
-		label: 'What kind of special thing should be done with this item?',
-		dependsOn: {status:'Special'}
-	},
-	specialStatusOr: {
-		type: Types.Relationship,
-		ref: 'SpecialOption',
-		label: 'OR : What kind of special thing should be done with this item?',
-		dependsOn: {statusOr:'Special'}
-	},
+	
+  // Warning: The below code has been removed because it was traced to 
+  // an internal node memory error
+  // specialStatus: {
+	// 	type: Types.Relationship,
+	// 	ref: 'SpecialOption',
+	// 	label: 'What kind of special thing should be done with this item?',
+	// 	dependsOn: {status:'Special'}
+	// },
+	// specialStatusOr: {
+	// 	type: Types.Relationship,
+	// 	ref: 'SpecialOption',
+	// 	label: 'OR : What kind of special thing should be done with this item?',
+	// 	dependsOn: {statusOr:'Special'}
+	// },
 
 	rationale: { type: Types.Markdown, label: 'Correct Answer: Why do you do this with this item?'},
 	rationaleAlt: { type: Types.Markdown, label: 'Wrong Answer: Why don\'t we do that with this item?'},
@@ -68,37 +71,40 @@ Item.add({
 
 Item.schema.statics.removeResourceRef = function(resourceId, callback) {
 
-    Item.model.update({
-            $or: [{
-                'material': resourceId
-            }, {
-				'specialStatus':resourceId
-            }, {
-                'specialStatusOr':resourceId
-            }]
-        },
+  // Warning: The below code has been removed because it was traced to 
+  // an internal node memory error
 
-        {
-            $pull: {
-                'material': resourceId,
-                'specialStatus':resourceId,
-                'specialStatusOr':resourceId
-            }
-        },
+    // Item.model.update({
+    //         $or: [{
+    //             'material': resourceId
+    //         }, {
+		// 		'specialStatus':resourceId
+    //         }, {
+    //             'specialStatusOr':resourceId
+    //         }]
+    //     },
 
-        {
-            multi: true
-        },
+    //     {
+    //         $pull: {
+    //             'material': resourceId,
+    //             'specialStatus':resourceId,
+    //             'specialStatusOr':resourceId
+    //         }
+    //     },
 
-        function(err, result) {
-        	console.log(result);
+    //     {
+    //         multi: true
+    //     },
 
-            callback(err, result);
+    //     function(err, result) {
+    //     	console.log(result);
 
-            if (err)
-                console.error(err);
-        }
-    );
+    //         callback(err, result);
+
+    //         if (err)
+    //             console.error(err);
+    //     }
+    // );
 
 };
 

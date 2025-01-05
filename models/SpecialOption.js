@@ -38,8 +38,10 @@ SpecialOption.add({
 
 });
 
-SpecialOption.relationship({ ref: 'Item', refPath: 'specialStatus' });
-SpecialOption.relationship({ ref: 'Item', refPath: 'specialStatusOr' });
+// Warning: The below code has been removed because it was traced to 
+  // an internal node memory error
+// SpecialOption.relationship({ ref: 'Item', refPath: 'specialStatus' });
+// SpecialOption.relationship({ ref: 'Item', refPath: 'specialStatusOr' });
 
 
 /**
