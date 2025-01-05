@@ -18,7 +18,7 @@
 
 	<button class="btn nav-bar" data-direction="right" id="btn-play" data-section="levels"></button>
 
-	<h2>Welcome{{#ifeq player.new false}} back{{/ifeq}}, {{player.name.first}}!</h2>
+	<h3>Welcome{{#ifeq player.new false}} back{{/ifeq}}, {{player.name.first}}!</h3>
 
 	{{#ifeq player.admin true}}
 
@@ -26,12 +26,18 @@
 
 	{{else}}
 
-		<h4>So far you have {{#if score}}{{score}}{{else}}0{{/if}} leaderboard points!</h4>
+		<h5>So far you have {{#if score}}{{score}}{{else}}0{{/if}} leaderboard points!</h5>
 
-		<div class="section leaderboard" style="display:block;">
+		<div class="section leaderboard" style="display:block; margin-bottom: 3rem;">
 		{{!-- <h3 id="coming-soon">Leaderboard Coming Soon!</h3> --}}
 		{{>board}}
 		</div>
+
+    <button 
+      class="btn minimal btn-lg" 
+      style="padding: 1rem 1.5rem;"
+      data-level="{{currentLevel player}}"
+    >Play Now</button>
 
 	{{/ifeq}}
 

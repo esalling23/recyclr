@@ -77,6 +77,13 @@ module.exports = function() {
 
     };
 
+    _helpers.currentLevel = function (player) {
+      if (player.completed) return '*'
+      if (player.levelTwo) return '3'
+      if (player.levelOne) return '2'
+      return '1'
+    }
+
     return _helpers;
 
 

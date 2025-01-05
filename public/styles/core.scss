@@ -177,7 +177,7 @@ button.nav-bar {
 	}
 
 	&[data-section="levels"] {
-		background-image: url('/images/play-icon.svg');
+		background-image: url('/images/playsvg.svg');
 	    background-size: contain;
 	    background-repeat: no-repeat;
 	    height: 25px;
@@ -1072,13 +1072,20 @@ section.tinderslide {
 	text-align: center;
 
 	input {
+    margin: 1rem 0;
 		bottom: -15px;
 		background-color: white;
 		border-radius:50%;
 		border: 2px solid $tinder-black;
+
+    transition: scale 0.2s;
+    &:hover, &:focus {
+      filter: saturate(1.6);
+      scale: 1.05;
+    }
 		&:before {
 			content: '';
-		    background-color: white;
+      background-color: white;
 		}
 		&.large {
 			height:60px;
