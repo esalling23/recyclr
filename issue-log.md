@@ -129,4 +129,7 @@ FATAL ERROR: RegExpCompiler Allocation failed - process out of memory
 ### Investigation
 
 - Switched to latest node version
-- 
+- Tried it out on the production server to check for environment differences
+- Determined which models it was happening with vs others
+
+Tracked it down to some post model hook & relationship lines. Commenting out the offending code for now. 
