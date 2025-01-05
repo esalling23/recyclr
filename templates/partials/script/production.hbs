@@ -1,27 +1,23 @@
 {{!< default}}
-{{!-- 
+{{!--
 /**
  * Emerging Citizens
  * Developed by Engagement Lab, 2015
  * ==============
- * 
+ *
  * Script includes partial for PRODUCTION
  * ==========
  */
 --}}
 
-{{!-- PRODUCTION SCRIPTS START --}}
 {{!-- SCRIPTS START --}}
 {{!-- Jquery and Bootstap core js files --}}
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-{{!-- cloudinary upload widget --}}
-<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
-
 {{!-- UI --}}
-<script type="text/javascript" src="/plugins/underscore.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.1/underscore-min.js"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
@@ -46,6 +42,6 @@
 {{!-- <script type="text/javascript" src="/bower_components/glidejs/dist/glide.js"></script> --}}
 
 <!-- Select2 -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
-{{> script/global section=section }}
+{{> script/global section=section key=key }}
