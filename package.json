@@ -34,6 +34,7 @@
     "pluralize": "^8.0.0",
     "progressbar.js": "^1.1.0",
     "random-number": "^0.0.9",
+    "sass": "^1.83.1",
     "underscore": "^1.13.1"
   },
   "devDependencies": {
