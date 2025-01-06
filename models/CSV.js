@@ -91,5 +91,5 @@ CSV.schema.post('save', function(next) {
  * Model Registration
  */
 CSV.defaultSort = '-createdAt';
-CSV.defaultColumns = 'name, updatedAt';
+CSV.defaultColumns = 'name';
 CSV.register();

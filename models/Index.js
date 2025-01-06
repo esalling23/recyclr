@@ -32,7 +32,7 @@ var Index = new keystone.List('Index',
  */
 Index.add({
 	name: { type: String, default: "Index Page", hidden: true, required: true, initial: true },
-	intro: { type: Types.Markdown, label: "Intro Text",  initial: true, required: true }
+	intro: { type: Types.Textarea, label: "Intro Text",  initial: true, required: true }
 	// description: { type: Types.Textarea, label: "Description",  initial: true, required: true },
 	
 });
@@ -41,5 +41,5 @@ Index.add({
  * Model Registration
  */
 Index.defaultSort = '-createdAt';
-Index.defaultColumns = 'name, updatedAt';
+Index.defaultColumns = 'name';
 Index.register();

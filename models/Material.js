@@ -34,31 +34,31 @@ var Material = new keystone.List('Material',
 Material.add({
 
 	name: { type: String, label: 'Name', required: true, initial: true },
-	info: { type: Types.Markdown, label: 'Material Info', required: true, initial: true},
+	info: { type: Types.Textarea, label: 'Material Info', required: true, initial: true},
 	image: { type: Types.CloudinaryImage, label: 'Material Image'}
 
 });
 
 Material.relationship({ ref: 'Item', refPath: 'material' });
 
-Material.schema.post('remove', function(next) {
+// Material.schema.post('remove', function(next) {
 
-	var id = this._id;
-    // Remove all the Item docs that reference the removed Material.
-    Item.model.find({ material: id }, function(err, result){
-    	console.log(result);
-    	result.material = _.without(result.material, id);
-    	console.log(_.without(result.material, id));
-    	result.schema.save();
-    	console.log(result);
+// 	var id = this._id;
+//     // Remove all the Item docs that reference the removed Material.
+//     Item.model.find({ material: id }, function(err, result){
+//     	console.log(result);
+//     	result.material = _.without(result.material, id);
+//     	console.log(_.without(result.material, id));
+//     	result.schema.save();
+//     	console.log(result);
 
-    	next();
-    });
-});
+//     	next();
+//     });
+// });
 
 /**
  * Model Registration
  */
 Material.defaultSort = '-createdAt';
-Material.defaultColumns = 'name, updatedAt';
+Material.defaultColumns = 'name';
 Material.register();

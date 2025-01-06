@@ -1,11 +1,11 @@
 <div class="modal-wrap material-profile">
 	<div class="modal-inner material-profile">
 
-		{{this.name}}
+		<h3>{{this.name}}</h3>
 
 		{{{cloudinaryUrl this.image.url width='60%'}}}
 	
-		{{{this.info.html}}}
+		<p>{{this.info}}</p>
 
 		<div class="button-group">
 			<input id="back-btn" data-keep_enabled="true" class="minimal submit" type="submit" name="submit" value="back">

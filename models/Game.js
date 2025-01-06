@@ -68,5 +68,5 @@ Game.schema.post('save', function(doc, next) {
  * Model Registration
  */
 Game.defaultSort = '-createdAt';
-Game.defaultColumns = 'name, updatedAt';
+Game.defaultColumns = 'name';
 Game.register();

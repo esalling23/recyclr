@@ -33,20 +33,18 @@ var SpecialOption = new keystone.List('SpecialOption',
 SpecialOption.add({
 
 	name: { type: String, label: 'Title of this special option', required: true, initial: true },
-	text: { type: Types.Markdown, label: 'Short description', required: true, initial: true},
+	text: { type: Types.Textarea, label: 'Short description', required: true, initial: true},
 	image: { type: Types.CloudinaryImage, label: 'Special Option Image'}
 
 });
 
-// Warning: The below code has been removed because it was traced to 
-  // an internal node memory error
-// SpecialOption.relationship({ ref: 'Item', refPath: 'specialStatus' });
-// SpecialOption.relationship({ ref: 'Item', refPath: 'specialStatusOr' });
+SpecialOption.relationship({ ref: 'Item', refPath: 'specialStatus' });
+SpecialOption.relationship({ ref: 'Item', refPath: 'specialStatusOr' });
 
 
 /**
  * Model Registration
  */
 SpecialOption.defaultSort = '-createdAt';
-SpecialOption.defaultColumns = 'name, updatedAt';
+SpecialOption.defaultColumns = 'name';
 SpecialOption.register();

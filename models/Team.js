@@ -43,5 +43,5 @@ Team.relationship({ ref: 'Player', refPath: 'team' });
  * Model Registration
  */
 Team.defaultSort = '-createdAt';
-Team.defaultColumns = 'name, updatedAt';
+Team.defaultColumns = 'name';
 Team.register();
