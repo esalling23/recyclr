@@ -40,7 +40,6 @@
       $('.special-options .col-xs-12').removeClass('col-xs-12').addClass('col-xs-6');
       $('.special-scroll').css('overflow-y', 'scroll');
       $('.option.open').removeClass('open');
-      $('.option-wrap').css('height', '240px').css('width', '50%');
       $('.option-wrap, .option-select').show();
       $('.option-wrap').css('visibility', 'visible');
   }

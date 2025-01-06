@@ -4,7 +4,7 @@
 <div class="row special-options">
 	<div class="special-scroll">
 		{{#each special}}
-		<div class="col-xs-6 option-wrap">
+		<div class="option-wrap">
 			<div class="option" id="{{this.key}}">
 				<a class="option-profile">{{{cloudinaryUrl this.image.url width=80}}}</a>
 				<p>{{this.name}}</p>
@@ -15,7 +15,7 @@
 				</div>
 			</div>
 			<div class="option-select">
-				<input data-keep_enabled="true" data-action="info" class="btn maximal btn-handler submit" type="submit" name="submit" value="info">
+				{{!-- <input data-keep_enabled="true" data-action="info" class="btn maximal btn-handler submit" type="submit" name="submit" value="info"> --}}
 				<input data-keep_enabled="true" data-action="select" class="btn maximal btn-handler submit" type="submit" name="submit" value="select">
 			</div>
 		</div>

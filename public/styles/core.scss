@@ -420,6 +420,8 @@ button, .btn, input {
 		height: 100%;
 		overflow-y: scroll;
 		overflow-x: hidden;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 	}
 }
 
@@ -437,14 +439,12 @@ button, .btn, input {
 	margin-top: 0px;
 	background: rgba(black, .9);
 	.option-wrap {
-		height: 240px;
-		width: 50%;
-		padding: 0px;
+		width: 100%;
+		padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
 		.option {
 			background-color: lighten(black, 30%);
-			height: 180px;
-			width: 140px;
-			display: inline-block;
 			padding: 5px;
 
 			h3 {
@@ -472,10 +472,10 @@ button, .btn, input {
 			}
 		}
 		.option-select {
-			width: 140px;
+			width: 100%;
 			margin: 0 auto;
 			input {
-				width: 70px;
+				width: 100%;
 				border-radius:0px;
 				margin: 0px;
 				float: left;
