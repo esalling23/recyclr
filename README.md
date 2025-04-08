@@ -5,7 +5,7 @@ Port of sunsetted RecycleMe project built for Emerson College Environment and Su
 ## Prereqs
 
 This project assumes you have: 
-- A mongo db v2.6 instance running somewhere and its connection string
+- A mongodb v2.6 instance running somewhere and its connection string
 - A cloudinary account & content for data images
 
 ## How To Run
